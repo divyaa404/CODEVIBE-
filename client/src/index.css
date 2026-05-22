@@ -365,8 +365,10 @@ body>* {
 .search-input {
   width: 100%;
   max-width: 620px;
-  padding: 0.85rem 1.5rem;
-  font-size: rem;
+  min-width: 0;
+  padding: 0.85rem 2rem;
+  padding-left: 2.8rem;
+  font-size: 1rem;
   font-family: inherit;
   color: var(--text-primary);
   background: linear-gradient(135deg, rgba(26, 31, 58, 0.9), rgba(36, 42, 69, 0.9));
@@ -378,6 +380,15 @@ body>* {
     0 0 10px rgba(255, 77, 109, 0.2),
     inset 0 0 15px rgba(255, 77, 109, 0.05);
   letter-spacing: 0.3px;
+
+  /* Fix placeholder overflow */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-container {
+  overflow: hidden;
 }
 
 .search-input::placeholder {
@@ -810,7 +821,7 @@ h3 {
 
 .footer-note {
   font-size: 0.8rem;
-  color: rgba(176, 184, 212, 0.55);
+  color: rgba(176, 184, 212, 0.75);
 }
 
 /* ===== SCROLL TO TOP BUTTON ===== */
@@ -2420,7 +2431,7 @@ select:focus {
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 560px;
+  max-width: 620px;
   background: rgba(10, 14, 39, 0.85);
   border: 2px solid rgba(255, 77, 109, 0.5);
   border-radius: 8px;
@@ -2453,22 +2464,27 @@ select:focus {
 
 .search-input {
   flex: 1;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.03);
   border: none;
   outline: none;
   color: #ffffff;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-family: inherit;
-  padding: 0.35rem 0.5rem;
+  padding: 0.85rem 1.2rem;
+  border-radius: 14px;
   caret-color: #ff4d6d;
   min-width: 0;
-  /* prevents overflow on small screens */
+
   box-shadow: none;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .search-input::placeholder {
-  color: rgba(176, 184, 212, 0.55);
-  font-size: 0.9rem;
+  color: rgba(176, 184, 212, 0.75);
+  font-size: 0.95rem;
 }
 
 .search-input:focus {
@@ -2505,15 +2521,14 @@ select:focus {
   color: white;
   font-weight: 700;
   font-size: 1rem;
-  padding: 0.5rem 1.2rem;
-  border-radius: 8px;
+  padding: 0.75rem 1.4rem;
+  border-radius: 14px;
   cursor: pointer;
   white-space: nowrap;
   flex-shrink: 0;
   margin: 0;
   letter-spacing: 0.4px;
   box-shadow: 0 0 12px rgba(255, 77, 109, 0.5);
-  transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
 }
 
 .search-btn:hover {
@@ -2649,7 +2664,6 @@ select:focus {
     content: '🔍︎';
     font-size: 0.95rem;
   }
-}
 
 feat/scroll-to-top-button .scroll-to-top {
   position: fixed;
