@@ -732,32 +732,38 @@ const Dashboard = () => {
       value: Math.min(point.value, statsTotalPoints),
     }));
 
-    const adjustedPoints = cappedPoints.length
-      ? cappedPoints[0].value === statsTotalPoints
-        ? cappedPoints
-        : [
-            ...cappedPoints,
-            {
-              date: analytics?.stats?.lastUpdated || new Date().toISOString(),
-              value: statsTotalPoints,
-              lessonsCompleted: cappedPoints[cappedPoints.length - 1]?.lessonsCompleted || 0,
-              label: analytics?.stats?.lastUpdated
-                ? formatShortDate(analytics.stats.lastUpdated)
-                : 'Now',
-            },
-          ]
-      : statsTotalPoints > 0
-      ? [
+    let adjustedPoints;
+
+    if (cappedPoints.length) {
+      if (cappedPoints[0].value === statsTotalPoints) {
+        adjustedPoints = cappedPoints;
+      } else {
+        adjustedPoints = [
+          ...cappedPoints,
           {
             date: analytics?.stats?.lastUpdated || new Date().toISOString(),
             value: statsTotalPoints,
-            lessonsCompleted: 0,
+            lessonsCompleted: cappedPoints[cappedPoints.length - 1]?.lessonsCompleted || 0,
             label: analytics?.stats?.lastUpdated
               ? formatShortDate(analytics.stats.lastUpdated)
               : 'Now',
           },
-        ]
-      : [];
+        ];
+      }
+    } else if (statsTotalPoints > 0) {
+      adjustedPoints = [
+        {
+          date: analytics?.stats?.lastUpdated || new Date().toISOString(),
+          value: statsTotalPoints,
+          lessonsCompleted: 0,
+          label: analytics?.stats?.lastUpdated
+            ? formatShortDate(analytics.stats.lastUpdated)
+            : 'Now',
+        },
+      ];
+    } else {
+      adjustedPoints = [];
+    }
 
     const finalValue = statsTotalPoints;
     const firstValue = adjustedPoints[0]?.value || 0;
