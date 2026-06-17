@@ -1,8 +1,8 @@
 # Contributor Leaderboard
 
-This leaderboard is generated automatically for `divyagsharma2006-blip/CODEVIBE-` by GitHub Actions.
+This leaderboard is generated automatically for `divyaa404/CODEVIBE-` by GitHub Actions.
 
-Last updated: 2026-06-16
+Last updated: 2026-06-17
 
 ## Scoring
 
